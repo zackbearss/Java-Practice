@@ -1,11 +1,11 @@
-package dinamicarray;
+package dynamicarray;
 
-public class DinamicArray<T> {
+public class DynamicArray<T> {
 	private int capacity;
 	private int size;
 	private Object[] array;
 	
-	public DinamicArray(){
+	public DynamicArray(){
 		capacity = 16;
 		size = 0;
 		

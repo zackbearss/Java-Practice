@@ -1,10 +1,10 @@
-package dinamicarray;
+package dynamicarray;
 
 public class Main {
     public static void main(String[] args) {
         // Prints "Hello, World" to the terminal window.
         System.out.println("Hello, World");
-        DinamicArray<Boolean> test = new DinamicArray<Boolean>();
+        DynamicArray<Boolean> test = new DynamicArray<Boolean>();
         boolean state = false;
         for(int i = 0; i < 15; i++){
         	test.push(state);
