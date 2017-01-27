@@ -75,7 +75,7 @@ public class DynamicArray<T> {
 	
 	public T pop(){
 		size--;
-		if(size <= capacity/4){
+		if(size <= capacity/4 && capacity > 16){
 			resize((int)capacity/4);
 		}
 		return (T)array[size];

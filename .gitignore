@@ -1,3 +1,5 @@
+.recommenders/
+.metadata/
 .metadata/.lock
 .metadata/.mylyn/.taskListIndex/segments.gen
 .metadata/.mylyn/.taskListIndex/segments_1
