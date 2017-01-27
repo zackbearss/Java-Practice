@@ -76,7 +76,7 @@ public class DynamicArray<T> {
 	public T pop(){
 		size--;
 		if(size <= capacity/4 && capacity > 16){
-			resize((int)capacity/4);
+			resize((int)capacity/2);
 		}
 		return (T)array[size];
 	}
@@ -91,13 +91,13 @@ public class DynamicArray<T> {
 			return;
 		}
 		//remove from middle
-		Object[] tempArray = new Object[size-index];
+		Object[] tempArray = new Object[size-index-1];
 		//copy array
-		for(int i = 0; i < size - index; i++){
-			tempArray[i] = array[i + index];
+		for(int i = 0; i < size - index - 1; i++){
+			tempArray[i] = array[i + index + 1];
 		}
 		//copy back array
-		for(int i = 0; i < size - index; i++){
+		for(int i = 0; i < size - index - 1; i++){
 			array[index + i] = tempArray[i];
 		}
 		size--;

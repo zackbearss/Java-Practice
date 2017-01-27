@@ -78,7 +78,7 @@ public class DynamicArrayTesting {
 		assertEquals(test.is_empty(),true);
 	}
 
-	@Test
+	@Test(expected=IndexOutOfBoundsException.class)
 	public void testAt() {
 		DynamicArray<Boolean> test = new DynamicArray<Boolean>();
 		boolean testBool = false;
@@ -87,6 +87,7 @@ public class DynamicArrayTesting {
 			testBool = !testBool;
 		}
 		assertEquals(test.at(3),true);
+		test.at(9);
 	}
 
 	@Test
@@ -165,12 +166,37 @@ public class DynamicArrayTesting {
 
 	@Test
 	public void testDelete() {
-		fail("Not yet implemented");
+		DynamicArray<Boolean> test = new DynamicArray<Boolean>();
+		boolean[] testArray = new boolean[] {false, true, false, false, true};
+		//test basic case
+		boolean testBool = false;
+		for(int i = 0; i < 6; i++){
+			test.push(testBool);
+			testBool = !testBool;
+		}
+		
+		test.delete(3);
+		assertEquals(5, test.getSize());
+		for(int i = 0; i < 5; i++){
+			assertEquals(testArray[i], test.at(i));
+		}
 	}
 
 	@Test
 	public void testRemove() {
-		fail("Not yet implemented");
+		DynamicArray<Boolean> test = new DynamicArray<Boolean>();
+		boolean[] testArray = new boolean[] {false, false, false};
+		//test basic case
+		boolean testBool = false;
+		for(int i = 0; i < 6; i++){
+			test.push(testBool);
+			testBool = !testBool;
+		}
+		test.remove(true);
+		assertEquals(3, test.getSize());
+		for(int i = 0; i < 3; i++){
+			assertEquals(testArray[i], test.at(i));
+		}
 	}
 
 	@Test
