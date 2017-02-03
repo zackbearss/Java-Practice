@@ -132,14 +132,24 @@ public class SList<T> {
 		{
 			return null;
 		}
-		SNode<T> traverse = head;
+		SNode<T> traverseCurrent = head;
+		SNode<T> traversePast = head;
 		//traverse list
-		while(traverse.next.next != null)
-		{
-			traverse = traverse.next;
+		while(traverseCurrent.next != null)
+		{	
+			if(traverseCurrent == traversePast)
+			{
+				traverseCurrent = traverseCurrent.next;
+			}	
+			else
+			{
+				traversePast = traverseCurrent;
+				traverseCurrent = traverseCurrent.next;
+				
+			}
 		}
-		T value = traverse.next.value;
-		traverse.next = null;
+		T value = traverseCurrent.value;
+		traversePast.next = null;
 		size--;
 		return value;
 	}
