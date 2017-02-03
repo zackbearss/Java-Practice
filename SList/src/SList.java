@@ -118,6 +118,7 @@ public class SList<T> {
 			traverse = traverse.next;
 		}
 		traverse.next = temp;
+		size++;
 	}
 	
 	/**
