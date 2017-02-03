@@ -215,7 +215,7 @@ public class SList<T> {
 			counter++;
 		}
 		
-		temp.next = traverse.next.next;
+		temp.next = traverse.next;
 		traverse.next = temp;
 		size++;
 	}
