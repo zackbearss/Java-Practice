@@ -2,48 +2,73 @@ public class SList<T> {
 	SNode<T> head;
 	int size;
 	
+	/**
+	 * Constructor for SList
+	 */
 	SList()
 	{
+		//init vars
 		size = 0;
 		head = new SNode<>();
 		head.next = null;
 	}
 	
+	/**
+	 * Returns the size of the list
+	 * @return size
+	 */
 	int size()
 	{
 		return size;
 	}
 	
+	/**
+	 * Checks if the list is empty
+	 * @return True if empty / False if not empty
+	 */
 	boolean empty()
 	{
 		return (size == 0);
 	}
 
+	/**
+	 * Returns the value at a certain index
+	 * @param index The index in the list
+	 * @return Value at the index
+	 */
 	T value_at(int index)
 	{
+		//check size
 		if(index >= size)
 		{
-			//throw new ArrayIndexOutOfBoundsException();
 			return null;
 		}
 		
 		int counter = 0;
 		SNode<T> temp = head;
+		//traverse list
 		while(counter != index)
 		{
 			temp = temp.next;
+			counter++;
 		}
 		return temp.value;
 	}
 	
+	/**
+	 * Push a new node at the front of the list
+	 * @param value The value to go in the new node
+	 */
 	void push_front(T value)
 	{
+		//check size, if 0, update heaad
 		if(size == 0)
 		{
 			head.value = value;
 			size++;
 			return;
 		}
+		//change head with new node
 		SNode<T> temp = new SNode<>();
 		temp.value = value;
 		temp.next = head;
@@ -51,20 +76,31 @@ public class SList<T> {
 		size++;
 	}
 	
+	/**
+	 * Removes the first node of the list and returns
+	 * @return Value that was popped
+	 */
 	T pop_front()
 	{
+		//check size
 		if(size == 0)
 		{
 			return null;
 		}
+		//pop head
 		T value = head.value;
 		head = head.next;
 		size--;
 		return value;
 	}
 	
+	/**
+	 * Create a new node at the end of the list
+	 * @param value The value that goes into the new node
+	 */
 	void push_back(T value)
 	{
+		//check size
 		if(size == 0)
 		{
 			head.value = value;
@@ -73,9 +109,10 @@ public class SList<T> {
 		}
 		SNode<T> temp = new SNode<>();
 		SNode<T> traverse = head;
+		//update new node's vars
 		temp.value = value;
 		temp.next = null;
-		
+		//traverse list
 		while(traverse.next != null)
 		{
 			traverse = traverse.next;
@@ -83,13 +120,19 @@ public class SList<T> {
 		traverse.next = temp;
 	}
 	
+	/**
+	 * Remove the last node of the list and return the value
+	 * @return The value that was popped
+	 */
 	T pop_back()
 	{
+		//check size
 		if(size == 0)
 		{
 			return null;
 		}
 		SNode<T> traverse = head;
+		//traverse list
 		while(traverse.next.next != null)
 		{
 			traverse = traverse.next;
@@ -100,8 +143,13 @@ public class SList<T> {
 		return value;
 	}
 	
+	/**
+	 * Returns the value of the first node
+	 * @return The value in the first node
+	 */
 	T front()
 	{
+		//check size
 		if(size == 0)
 		{
 			return null;
@@ -109,14 +157,20 @@ public class SList<T> {
 		return head.value;
 	}
 	
+	/**
+	 * Returns the value in the last node
+	 * @return The value in the last node
+	 */
 	T back()
 	{
+		//check size
 		if(size == 0)
 		{
 			return null;
 		}
 		
 		SNode<T> traverse = head;
+		//traverse list
 		while(traverse.next != null)
 		{
 			traverse = traverse.next;
@@ -125,8 +179,14 @@ public class SList<T> {
 		return traverse.value;
 	}
 	
+	/**
+	 * Inserts a new node at a certain index of the list
+	 * @param index The index to place the node
+	 * @param value The value that goes in the new node
+	 */
 	void insert(int index, T value)
 	{
+		//check size, if the size is 0 and index is 0, go ahead
 		if(size == 0 && index != 0)
 		{
 			return;
@@ -137,6 +197,7 @@ public class SList<T> {
 		int counter = 0;
 		
 		temp.value = value;
+		//traverse list
 		while(counter != index - 1)
 		{
 			traverse = traverse.next;
@@ -148,8 +209,13 @@ public class SList<T> {
 		size++;
 	}
 	
+	/**
+	 * Erases a node at a certain index
+	 * @param index The index of the node to erase
+	 */
 	void erase(int index)
 	{
+		//check size
 		if(size == 0)
 		{
 			return;
@@ -157,7 +223,7 @@ public class SList<T> {
 		
 		SNode<T> traverse = head;
 		int counter = 0;
-		
+		//traverse list
 		while(counter != index - 1)
 		{
 			traverse = traverse.next;
@@ -168,8 +234,14 @@ public class SList<T> {
 		size--;
 	}
 	
+	/**
+	 * Returns the value of the node n from the end
+	 * @param n How many nodes away from the end
+	 * @return Value from the selected node
+	 */
 	T value_n_from_end(int n)
 	{
+		//check size, and make sure n from end makes sense
 		if(size == 0 || (size - n) < 0)
 		{
 			return null;
@@ -177,6 +249,7 @@ public class SList<T> {
 		
 		SNode<T> traverse = head;
 		int counter = 0;
+		//traverse list
 		while(counter != size - n)
 		{
 			traverse = traverse.next;
@@ -185,8 +258,12 @@ public class SList<T> {
 		return traverse.value;
 	}
 	
+	/**
+	 * Reverse a linked list
+	 */
 	void reverse()
 	{
+		//check size, only makes sense that size is 2 or more
 		if(size < 2)
 		{
 			return;
@@ -205,6 +282,7 @@ public class SList<T> {
 			reversalTempStorage.next = null;
 			
 			reverseTraverse = reverseHead;
+			//traverse list
 			while(reverseTraverse.next != null);
 			{
 				reverseTraverse = reverseTraverse.next;
@@ -215,17 +293,26 @@ public class SList<T> {
 		head = reverseHead;
 	}
 	
+	/**
+	 * Remove the first node to contain a certain value
+	 * @param value The value to look for
+	 */
 	void remove_value(T value)
 	{
+		//check size
 		if(size == 0)
 		{
 			return;
 		}
 		
 		SNode<T> traverse = head;
-		while(traverse.next != null)
+		for(int i = 0; i < size; i++)
 		{
-			if(traverse.next)
+			if(traverse.value == value)
+			{
+				this.erase(i);
+			}
+			traverse = traverse.next;
 		}
 	}
 }
