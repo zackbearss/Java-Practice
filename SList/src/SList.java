@@ -241,16 +241,26 @@ public class SList<T> {
 			return;
 		}
 		
-		SNode<T> traverse = head;
+		SNode<T> traverseCurrent = head;
+		SNode<T> traversePast = head;
 		int counter = 0;
 		//traverse list
-		while(counter != index - 1)
+		while(counter != index)
 		{
-			traverse = traverse.next;
+			if(traverseCurrent == traversePast)
+			{
+				traverseCurrent = traverseCurrent.next;
+			}
+			else
+			{
+				traversePast = traverseCurrent;
+				traverseCurrent = traverseCurrent.next;
+			}
+			
 			counter++;
 		}
 		
-		traverse.next = traverse.next.next;
+		traversePast.next = traverseCurrent.next;
 		size--;
 	}
 	
