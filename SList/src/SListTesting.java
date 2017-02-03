@@ -42,47 +42,116 @@ public class SListTesting {
 	
 	@Test
 	public void testValue_at() {
-		fail("Not yet implemented");
+		SList<Integer> ll = new SList<Integer>();
+		ll.push_back(10);
+		ll.push_back(4);
+		ll.push_back(6);
+		assertEquals(4, (int)ll.value_at(1));
+		assertEquals(6, (int)ll.value_at(2));
+		assertNull(ll.value_at(3));
+		ll.pop_back();
+		ll.pop_back();
+		assertEquals(10, (int)ll.value_at(0));
+		ll.pop_back();
+		assertNull(ll.value_at(0));
 	}
 	
 	@Test
 	public void testPush_front() {
-		fail("Not yet implemented");
+		SList<Integer> ll = new SList<Integer>();
+		ll.push_front(10);
+		ll.push_front(4);
+		ll.push_front(6);
+		assertEquals(10, (int)ll.value_at(2));
+		assertEquals(4, (int)ll.value_at(1));
+		assertEquals(6, (int)ll.value_at(0));
 	}
 	
 	@Test
 	public void testPop_front() {
-		fail("Not yet implemented");
+		SList<Integer> ll = new SList<Integer>();
+		ll.push_back(10);
+		ll.push_back(4);
+		ll.push_back(6);
+		assertEquals(10, (int)ll.pop_front());
+		assertEquals(4, (int)ll.pop_front());
+		assertEquals(6, (int)ll.pop_front());
+		assertNull(ll.pop_front());
 	}
 		
 	@Test
 	public void testPush_back() {
-		fail("Not yet implemented");
+		SList<Integer> ll = new SList<Integer>();
+		ll.push_back(10);
+		ll.push_back(4);
+		ll.push_back(6);
+		assertEquals(10, (int)ll.value_at(0));
+		assertEquals(4, (int)ll.value_at(1));
+		assertEquals(6, (int)ll.value_at(2));
 	}
 	
 	@Test
 	public void testPop_back() {
-		fail("Not yet implemented");
+		SList<Integer> ll = new SList<Integer>();
+		ll.push_back(10);
+		ll.push_back(4);
+		ll.push_back(6);
+		assertEquals(6, (int)ll.pop_back());
+		assertEquals(4, (int)ll.pop_back());
+		assertEquals(10, (int)ll.pop_back());
+		assertNull(ll.pop_back());
 	}
 	
 	@Test
 	public void testFront() {
-		fail("Not yet implemented");
+		SList<Integer> ll = new SList<Integer>();
+		assertNull(ll.front());
+		ll.push_back(10);
+		ll.push_back(4);
+		ll.push_back(6);
+		assertEquals(10, (int)ll.front());
 	}
 	
 	@Test
 	public void testBack() {
-		fail("Not yet implemented");
+		SList<Integer> ll = new SList<Integer>();
+		assertNull(ll.back());
+		ll.push_back(10);
+		ll.push_back(4);
+		ll.push_back(6);
+		assertEquals(6, (int)ll.back());
 	}
 	
 	@Test
 	public void testInsert() {
-		fail("Not yet implemented");
+		SList<Integer> ll = new SList<Integer>();
+		ll.insert(10, 5);
+		ll.insert(0, 10);
+		ll.push_back(4);
+		ll.push_back(6);
+		ll.insert(2, 99);
+		assertEquals(10, (int)ll.value_at(0));
+		assertEquals(4, (int)ll.value_at(1));
+		assertEquals(99, (int)ll.value_at(2));
+		assertEquals(6, (int)ll.value_at(3));
 	}
 	
 	@Test
 	public void testErase() {
-		fail("Not yet implemented");
+		SList<Integer> ll = new SList<Integer>();
+		ll.erase(0);
+		ll.insert(0, 10);
+		ll.push_back(4);
+		ll.push_back(6);
+		ll.insert(2, 99);
+		ll.erase(0);
+		assertEquals(4, (int)ll.value_at(0));
+		assertEquals(99, (int)ll.value_at(1));
+		assertEquals(6, (int)ll.value_at(2));
+		assertNull(ll.value_at(3));
+		ll.erase(1);
+		assertEquals(4, (int)ll.value_at(0));
+		assertEquals(6, (int)ll.value_at(1));
 	}
 	
 	@Test
