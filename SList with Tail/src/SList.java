@@ -133,6 +133,12 @@ public class SList<T> {
 		{
 			return null;
 		}
+		if(size == 1)
+		{
+			head.value = null;
+			size--;
+			return null;
+		}
 		SNode<T> traverse = head;
 		//traverse list
 		while(traverse.next != tail)
