@@ -283,7 +283,7 @@ public class SList<T> {
 	T value_n_from_end(int n)
 	{
 		//check size, and make sure n from end makes sense
-		if(size == 0 || (size - n) < 0)
+		if(size == 0 || (size - n) <= 0)
 		{
 			return null;
 		}
@@ -291,7 +291,7 @@ public class SList<T> {
 		SNode<T> traverse = head;
 		int counter = 0;
 		//traverse list
-		while(counter != size - n)
+		while(counter != size - n - 1)
 		{
 			traverse = traverse.next;
 			counter++;
