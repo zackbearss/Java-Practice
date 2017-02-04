@@ -310,25 +310,25 @@ public class SList<T> {
 			return;
 		}
 		
-		SNode<T> reverseHead = new SNode<>();
-		SNode<T> reverseTraverse;
+		SNode<T> reverseHead  = new SNode<>();
+		SNode<T> reverseTraverse = reverseHead;
 		SNode<T> reversalTempStorage = new SNode<>();
 		
-		reverseHead.value = this.pop_back();
-		reverseHead.next = null;
-		
-		for(int i = 1; i < size; i++)
+		for(int i = size - 1; i >= 0; i--)
 		{
-			reversalTempStorage.value = this.pop_back();
+			reversalTempStorage.value = this.value_at(i);
 			reversalTempStorage.next = null;
 			
-			reverseTraverse = reverseHead;
-			//traverse list
-			while(reverseTraverse.next != null);
+			if(reverseHead.value == null)
 			{
+				reverseHead = reverseTraverse = reversalTempStorage;
+				
+			}
+			else
+			{
+				reverseTraverse.next = reversalTempStorage;
 				reverseTraverse = reverseTraverse.next;
 			}
-			reverseTraverse.next = reversalTempStorage;
 			reversalTempStorage = new SNode<>();
 		}
 		head = reverseHead;
