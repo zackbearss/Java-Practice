@@ -135,9 +135,10 @@ public class SList<T> {
 		}
 		if(size == 1)
 		{
+			T value = head.value;
 			head.value = null;
 			size--;
-			return null;
+			return value;
 		}
 		SNode<T> traverse = head;
 		//traverse list
