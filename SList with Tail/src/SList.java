@@ -11,6 +11,7 @@ public class SList<T> {
 		//init vars
 		size = 0;
 		head = new SNode<>(null, null);
+		tail = head;
 	}
 	
 	/**
