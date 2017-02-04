@@ -204,7 +204,7 @@ public class SList<T> {
 			this.push_front(value);
 		}
 		//fast access to tail
-		if(index == size - 1)
+		if(index == size)
 		{
 			this.push_back(value);
 		}
