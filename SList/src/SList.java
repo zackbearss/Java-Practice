@@ -245,6 +245,13 @@ public class SList<T> {
 			return;
 		}
 		
+		if(index == 0)
+		{
+			head = head.next;
+			size--;
+			return;
+		}
+		
 		SNode<T> traverseCurrent = head;
 		SNode<T> traversePast = head;
 		int counter = 0;
