@@ -156,12 +156,33 @@ public class SListTesting {
 	
 	@Test
 	public void testValue_n_from_end() {
-		fail("Not yet implemented");
+		SList<Integer> ll = new SList<Integer>();
+		ll.push_back(10);
+		ll.push_back(4);
+		ll.push_back(6);
+		ll.push_back(2);
+		ll.push_back(56);
+		ll.push_back(234);
+		assertEquals(4, (int)ll.value_n_from_end(4));
+		assertNull(ll.value_n_from_end(6));
 	}
 	
 	@Test
 	public void testReverse() {
-		fail("Not yet implemented");
+		SList<Integer> ll = new SList<Integer>();
+		ll.push_back(10);
+		ll.push_back(4);
+		ll.push_back(6);
+		ll.push_back(2);
+		ll.push_back(56);
+		ll.push_back(234);
+		ll.reverse();
+		assertEquals(234, (int)ll.value_at(0));
+		assertEquals(56, (int)ll.value_at(1));
+		assertEquals(2, (int)ll.value_at(2));
+		assertEquals(6, (int)ll.value_at(3));
+		assertEquals(4, (int)ll.value_at(4));
+		assertEquals(10, (int)ll.value_at(5));
 	}
 	
 	@Test
