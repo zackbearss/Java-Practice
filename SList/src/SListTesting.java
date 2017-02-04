@@ -187,7 +187,20 @@ public class SListTesting {
 	
 	@Test
 	public void testRemove_value() {
-		fail("Not yet implemented");
+		SList<Integer> ll = new SList<Integer>();
+		ll.remove_value(10);
+		ll.push_back(10);
+		ll.push_back(4);
+		ll.push_back(10);
+		ll.push_back(2);
+		ll.push_back(56);
+		ll.push_back(234);
+		ll.remove_value(10);
+		assertEquals(4, (int)ll.value_at(0));
+		assertEquals(10, (int)ll.value_at(1));
+		assertEquals(2, (int)ll.value_at(2));
+		assertEquals(56, (int)ll.value_at(3));
+		assertEquals(234, (int)ll.value_at(4));
 	}
 
 }

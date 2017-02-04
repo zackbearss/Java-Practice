@@ -352,6 +352,7 @@ public class SList<T> {
 			if(traverse.value == value)
 			{
 				this.erase(i);
+				return;
 			}
 			traverse = traverse.next;
 		}
