@@ -198,8 +198,12 @@ public class SList<T> {
 	void insert(int index, T value)
 	{
 		//check size, if the size is 0 and index is 0, go ahead
-		if(size == 0 && index != 0)
+		if(size == 0)
 		{
+			if(index == 0)
+			{
+				this.push_back(value);
+			}
 			return;
 		}
 		
