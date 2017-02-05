@@ -32,39 +32,39 @@ public class DList<T> {
 		return (size == 0);
 	}
 
-//	/**
-//	 * Returns the value at a certain index
-//	 * @param index The index in the list
-//	 * @return Value at the index
-//	 */
-//	T value_at(int index)
-//	{
-//		//check size
-//		if(index >= size)
-//		{
-//			return null;
-//		}
-//		//fast access to head
-//		if(index == 0)
-//		{
-//			return head.value;
-//		}
-//		//fast access to tail
-//		if(index == size - 1)
-//		{
-//			return tail.value;
-//		}
-//		//look through rest of list
-//		int counter = 1;
-//		DNode<T> temp = head.next;
-//		//traverse list
-//		while(counter != index)
-//		{
-//			temp = temp.next;
-//			counter++;
-//		}
-//		return temp.value;
-//	}
+	/**
+	 * Returns the value at a certain index
+	 * @param index The index in the list
+	 * @return Value at the index
+	 */
+	T value_at(int index)
+	{
+		//check size
+		if(index >= size)
+		{
+			return null;
+		}
+		//fast access to head
+		if(index == 0)
+		{
+			return head.value;
+		}
+		//fast access to tail
+		if(index == size - 1)
+		{
+			return tail.value;
+		}
+		//look through rest of list
+		int counter = 1;
+		DNode<T> temp = head.next;
+		//traverse list
+		while(counter != index)
+		{
+			temp = temp.next;
+			counter++;
+		}
+		return temp.value;
+	}
 
 	/**
 	 * Push a new node at the front of the list
@@ -98,7 +98,10 @@ public class DList<T> {
 		}
 		//pop head
 		T value = head.value;
-		head = head.next;
+		if(size != 1)
+		{
+			head = head.next;
+		}
 		head.prev = null;
 		size--;
 		return value;
@@ -204,7 +207,7 @@ public class DList<T> {
 			this.push_back(value);
 		}
 		
-		DNode<T> temp = new DNode<>(value, null);
+		DNode<T> temp = new DNode<>(value, null, null);
 		DNode<T> traverseCurrent = head;
 		DNode<T> traversePast = head;
 		int counter = 0;
@@ -225,87 +228,90 @@ public class DList<T> {
 		}
 		
 		traversePast.next = temp;
+		traverseCurrent.prev = temp;
 		temp.next = traverseCurrent;
+		temp.prev = traversePast;
 		size++;
 	}
 	
-//	/**
-//	 * Erases a node at a certain index
-//	 * @param index The index of the node to erase
-//	 */
-//	void erase(int index)
-//	{
-//		//check size
-//		if(size == 0)
-//		{
-//			return;
-//		}
-//		//fast head access
-//		if(index == 0)
-//		{
-//			this.pop_front();
-//			return;
-//		}
-//		//fast tail access
-//		if(index == size - 1)
-//		{
-//			this.pop_back();
-//			return;
-//		}
-//		
-//		DNode<T> traverseCurrent = head;
-//		DNode<T> traversePast = head;
-//		int counter = 0;
-//		//traverse list
-//		while(counter != index)
-//		{
-//			if(traverseCurrent == traversePast)
-//			{
-//				traverseCurrent = traverseCurrent.next;
-//			}
-//			else
-//			{
-//				traversePast = traverseCurrent;
-//				traverseCurrent = traverseCurrent.next;
-//			}
-//			
-//			counter++;
-//		}
-//		
-//		traversePast.next = traverseCurrent.next;
-//		size--;
-//	}
-//	
-//	/**
-//	 * Returns the value of the node n from the end
-//	 * @param n How many nodes away from the end
-//	 * @return Value from the selected node
-//	 */
-//	T value_n_from_end(int n)
-//	{
-//		//check size, and make sure n from end makes sense
-//		if(size == 0 || (size - n) <= 0)
-//		{
-//			return null;
-//		}
-//		
-//		DNode<T> traverse = head;
-//		int counter = 0;
-//		//traverse list
-//		while(counter != size - n - 1)
-//		{
-//			traverse = traverse.next;
-//			counter++;
-//		}
-//		return traverse.value;
-//	}
-//	
-//	/**
-//	 * Reverse a linked list
-//	 */
-//	void reverse()
-//	{
-//		//check size, only makes sense that size is 2 or more
+	/**
+	 * Erases a node at a certain index
+	 * @param index The index of the node to erase
+	 */
+	void erase(int index)
+	{
+		//check size
+		if(size == 0)
+		{
+			return;
+		}
+		//fast head access
+		if(index == 0)
+		{
+			this.pop_front();
+			return;
+		}
+		//fast tail access
+		if(index == size - 1)
+		{
+			this.pop_back();
+			return;
+		}
+		
+		DNode<T> traverseCurrent = head;
+		DNode<T> traversePast = head;
+		int counter = 0;
+		//traverse list
+		while(counter != index)
+		{
+			if(traverseCurrent == traversePast)
+			{
+				traverseCurrent = traverseCurrent.next;
+			}
+			else
+			{
+				traversePast = traverseCurrent;
+				traverseCurrent = traverseCurrent.next;
+			}
+			
+			counter++;
+		}
+		
+		traversePast.next = traverseCurrent.next;
+		traverseCurrent.prev = traversePast;
+		size--;
+	}
+	
+	/**
+	 * Returns the value of the node n from the end
+	 * @param n How many nodes away from the end
+	 * @return Value from the selected node
+	 */
+	T value_n_from_end(int n)
+	{
+		//check size, and make sure n from end makes sense
+		if(size == 0 || (size - n) <= 0)
+		{
+			return null;
+		}
+		
+		DNode<T> traverse = tail;
+		int counter = 0;
+		//traverse list
+		while(counter < n)
+		{
+			traverse = traverse.prev;
+			counter++;
+		}
+		return traverse.value;
+	}
+	
+	/**
+	 * Reverse a linked list
+	 */
+	void reverse()
+	{
+		//check size, only makes sense that size is 2 or more
 //		if(size < 2)
 //		{
 //			return;
@@ -326,7 +332,7 @@ public class DList<T> {
 //		}
 //		tail = head;
 //		head = reverseHead;
-//	}
+	}
 	
 	/**
 	 * Remove the first node to contain a certain value
