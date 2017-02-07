@@ -10,14 +10,17 @@ public class StringBuilderTest {
 		StringBuilder test = new StringBuilder("value");
 		assertEquals(true, test.IsUnique());
 		assertEquals(true, test.IsUnique2());
+		assertEquals(true, test.IsUnique3());
 		test = new StringBuilder("zaack");
 		assertEquals(false, test.IsUnique());
 		assertEquals(false, test.IsUnique2());
-		test = new StringBuilder("zAack");
-		assertEquals(true, test.IsUnique());
-		assertEquals(true, test.IsUnique2());
+		assertEquals(false, test.IsUnique3());
+//		test = new StringBuilder("zAack");
+//		assertEquals(true, test.IsUnique());
+//		assertEquals(true, test.IsUnique2());
 		test = new StringBuilder("ajdkla");
 		assertEquals(false, test.IsUnique());
 		assertEquals(false, test.IsUnique2());
+		assertEquals(false, test.IsUnique3());
 	}
 }

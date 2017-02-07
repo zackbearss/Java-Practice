@@ -61,5 +61,28 @@ public class StringBuilder {
 		
 		return true;
 	}
+	
+	public boolean IsUnique3()
+	{
+		//using bit vector to keep track of letters, this is assuming all letters are lowercase
+		//O(n) runtime
+		//O(1) space
+		int checker = 0;
+		for(int i = 0; i < text.length(); i++)
+		{
+			int value = text.charAt(i) - 'a';
+			
+			if((checker & (1 << value)) > 0)
+			{
+				return false;
+			}
+			else
+			{
+				checker |= (1 << value);
+			}
+		}
+		
+		return true;
+	}
 
 }
